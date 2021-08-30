@@ -79,17 +79,17 @@ class Scrap():
             col1, col2, col3 = st.columns((1.5,0.2,1.1))
             with col1:
                 st.markdown("<h1> Top 15 Collections </h1>", unsafe_allow_html=True)
-                st.image("tables_of_collections/top_15_collections.png", use_column_width=True)
+                st.image("/home/ubuntu/Ziyad_Apps/nfts_data_scraping/tables_of_collections/top_15_collections.png", use_column_width=True)
                 st.button("Show All (More than 150)", key='Collections', on_click=self.navigation, args=('Collections', ))
 
             with col3:
                 st.markdown("<h1> Top 5 Sales </h1>", unsafe_allow_html=True)
-                st.image("tables_of_collections/top_5_sales.png", use_column_width=True)
+                st.image("/home/ubuntu/Ziyad_Apps/nfts_data_scraping/tables_of_collections/top_5_sales.png", use_column_width=True)
                 st.button("Show All", key='Sales', on_click=self.navigation, args=('Sales', ))
 
                 st.markdown("<br>", unsafe_allow_html=True)
                 st.markdown("<h1> Top 5 Marketplaces </h1>", unsafe_allow_html=True)
-                st.image("tables_of_collections/top_5_marketplaces.png", use_column_width=True)
+                st.image("/home/ubuntu/Ziyad_Apps/nfts_data_scraping/tables_of_collections/top_5_marketplaces.png", use_column_width=True)
                 st.button("Show All (Top 25)", key='Marketplaces', on_click=self.navigation, args=('Marketplaces', ))
 
         if st.session_state.nav == 'Collections':
