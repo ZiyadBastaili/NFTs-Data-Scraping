@@ -104,7 +104,9 @@ class Scrap():
             st.markdown("<h3>Rankings for NFT collections. Discover the top NFT collections across multiple protocols including Ethereum, BSC, WAX and Flow <br><br><br></h3>", unsafe_allow_html=True)
 
             #self.image_scraping("https://cryptoslam.io/", 'all_collections', targetElement = '.table')
-            st.button('↩️ NFTs Overview',key='Home', on_click=self.navigation,args=('Home', ))
+            col1, col2, col3 = st.columns((1,1,5))
+            col1.button('↩️ NFTs Overview', key='Home', on_click=self.navigation, args=('Home',))
+            col2.button('💰 Marketplaces', key='Collections', on_click=self.navigation, args=('Marketplaces',))
 
             df = self.get_collections(st.session_state.c_nav,st.session_state.t_nav)
             st.markdown('<br><br>', unsafe_allow_html=True)
@@ -228,13 +230,19 @@ class Scrap():
 
         if st.session_state.nav == 'Sales':
             st.title("Top Sales ")
+            st.markdown("<br><br><br>", unsafe_allow_html=True)
+            col1, col2, col3 = st.columns((1,1,5))
+            col1.button('↩️ NFTs Overview', key='Home', on_click=self.navigation, args=('Home',))
+            col2.button('💎 Collections', key='Collections', on_click=self.navigation, args=('Collections',))
 
 
         if st.session_state.nav == 'Marketplaces':
             st.title("Top 25 Marketplaces (24h)")
             st.markdown("<h3>NFT marketplace rankings. Find non-fungible token trading volumes, number of traders per NFT marketplace and more key metrics. <br><br><br></h3>", unsafe_allow_html=True)
 
-            st.button('↩️ NFTs Overview', key='Home', on_click=self.navigation, args=('Home',))
+            col1, col2, col3 = st.columns((1,1,5))
+            col1.button('↩️ NFTs Overview', key='Home', on_click=self.navigation, args=('Home',))
+            col2.button('💎 Collections', key='Collections', on_click=self.navigation, args=('Collections',))
 
             self.image_scraping("https://dappradar.com/nft/marketplaces/1", 'all_marketplaces', targetElement='.sc-iIEYCM',  hideElement='#om-nrz2xrzgki288pvo2jhx')
 
