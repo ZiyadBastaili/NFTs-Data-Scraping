@@ -80,7 +80,7 @@ class Scrap():
             with col1:
                 st.markdown("<h1> Top 15 Collections </h1>", unsafe_allow_html=True)
                 st.image(a, use_column_width=True)
-                st.button("Show All (More than 150)", key='Collections', on_click=self.navigation, args=('Collections', ))
+                st.button("Show All (More than 190)", key='Collections', on_click=self.navigation, args=('Collections', ))
 
             with col3:
                 st.markdown("<h1> Top 5 Sales </h1>", unsafe_allow_html=True)
@@ -377,11 +377,7 @@ class Scrap():
             options.hideElement = hideElement
 
         grabzIt = GrabzItClient.GrabzItClient("MWRiMTVhYTcwM2Y5NDIzODlhNmUwYzdlNmUwYzMyYjY=", "Fj9ePz8/Pz8/Pwk/HT8/cS9ZP1FxYg8/Pz8aGT8fJj8=")
-        try:
-            grabzIt.URLToImage(URLToImage, options)
-        except:
-            grabzIt.URLToImage(URLToImage)
-
+        grabzIt.URLToImage(URLToImage, options)
         #path = re.sub("\\\web_scraping", "", os.path.abspath("tables_of_collections"))
         path = '/home/ubuntu/Ziyad_Apps/nfts_data_scraping/tables_of_collections/'
         grabzIt.SaveTo(path +FileName+'.png')
