@@ -282,56 +282,63 @@ class Scrap():
             st.markdown('<br><br> ', unsafe_allow_html=True)
 
             path_file = self.get_summary_seles(link = 'https://cryptoslam.io'+st.session_state.link +'/sales/summary')
-            df = pd.read_csv(path_file)
-            df = df.iloc[:, 1:] # drop first column
-            st.table(df)
-            df = df.iloc[:-1] # drop last row
-            st.markdown('<br><br> ', unsafe_allow_html=True)
-            import altair as alt
+            if path_file is not None:
+                df = pd.read_csv(path_file)
+                df = df.iloc[:, 1:] # drop first column
+                st.table(df)
+                df = df.iloc[:-1] # drop last row
+                st.markdown('<br><br> ', unsafe_allow_html=True)
+                import altair as alt
 
 
-            st.markdown('Total Transactions per Month', unsafe_allow_html=True)
-            trans = alt.Chart(df).mark_line().encode(
+                st.markdown('Total Transactions per Month', unsafe_allow_html=True)
+                trans = alt.Chart(df).mark_line().encode(
+                        x="Month",
+                        y="Total Transactions:Q",
+                        color = alt.value('#FFD700')
+                    ).properties(width=500, height=400)
+                st.altair_chart(trans, use_container_width=True)
+
+                st.markdown('Sales (USD) per Month', unsafe_allow_html=True)
+                df['Sales (USD)'] = df['Sales (USD)'].apply(lambda x: re.sub('\\$|,', '', x))
+                sales = alt.Chart(df).mark_line().encode(
                     x="Month",
-                    y="Total Transactions:Q",
+                    y="Sales (USD):Q",
                     color = alt.value('#FFD700')
                 ).properties(width=500, height=400)
-            st.altair_chart(trans, use_container_width=True)
+                st.altair_chart(sales, use_container_width=True)
 
-            st.markdown('Sales (USD) per Month', unsafe_allow_html=True)
-            df['Sales (USD)'] = df['Sales (USD)'].apply(lambda x: re.sub('\\$|,', '', x))
-            sales = alt.Chart(df).mark_line().encode(
-                x="Month",
-                y="Sales (USD):Q",
-                color = alt.value('#FFD700')
-            ).properties(width=500, height=400)
-            st.altair_chart(sales, use_container_width=True)
+                st.markdown('Sales (ETH) per Month', unsafe_allow_html=True)
+                sales = alt.Chart(df).mark_line().encode(
+                    x="Month",
+                    y="Sales (ETH):Q",
+                    color = alt.value('#FFD700')
+                ).properties(width=500, height=400)
+                st.altair_chart(sales, use_container_width=True)
 
-            st.markdown('Sales (ETH) per Month', unsafe_allow_html=True)
-            sales = alt.Chart(df).mark_line().encode(
-                x="Month",
-                y="Sales (ETH):Q",
-                color = alt.value('#FFD700')
-            ).properties(width=500, height=400)
-            st.altair_chart(sales, use_container_width=True)
+                st.markdown('Avg Sale (USD) per Month', unsafe_allow_html=True)
+                df['Avg Sale (USD)'] = df['Avg Sale (USD)'].apply(lambda x: re.sub('\\$','',x))
+                Avg_usd = alt.Chart(df).mark_line().encode(
+                    x="Month",
+                    y="Avg Sale (USD):Q",
+                    color = alt.value('#FFD700')
+                ).properties(width=500, height=400)
+                st.altair_chart(Avg_usd, use_container_width=True)
 
-            st.markdown('Avg Sale (USD) per Month', unsafe_allow_html=True)
-            df['Avg Sale (USD)'] = df['Avg Sale (USD)'].apply(lambda x: re.sub('\\$','',x))
-            Avg_usd = alt.Chart(df).mark_line().encode(
-                x="Month",
-                y="Avg Sale (USD):Q",
-                color = alt.value('#FFD700')
-            ).properties(width=500, height=400)
-            st.altair_chart(Avg_usd, use_container_width=True)
+                st.markdown('Avg Sale (ETH) per Month', unsafe_allow_html=True)
+                Avg_eth = alt.Chart(df).mark_line().encode(
+                    x="Month",
+                    y="Avg Sale (ETH):Q",
+                    color = alt.value('#FFD700')
+                ).properties(width=500, height=400)
+                st.altair_chart(Avg_eth, use_container_width=True)
+               
+            else:
+                st.markdown('<br><br><br>', unsafe_allow_html=True)
+                st.markdown('No Data Found', unsafe_allow_html=True)
+                st.markdown('<br><br><br>', unsafe_allow_html=True)
 
-            st.markdown('Avg Sale (ETH) per Month', unsafe_allow_html=True)
-            Avg_eth = alt.Chart(df).mark_line().encode(
-                x="Month",
-                y="Avg Sale (ETH):Q",
-                color = alt.value('#FFD700')
-            ).properties(width=500, height=400)
-            st.altair_chart(Avg_eth, use_container_width=True)
-
+                
 
 
             # b = alt.Chart(df).mark_area(opacity=0.6).encode(
@@ -561,8 +568,11 @@ class Scrap():
         #path = re.sub("\\\web_scraping", "", os.path.abspath("tables_of_collections"))
         #grabzIt.SaveTo(path + "\\" + "summary.csv")
         path = '/home/ubuntu/Ziyad_Apps/nfts_data_scraping/tables_of_collections/'
-        grabzIt.SaveTo(path +"summary.csv.png")
-        return path +"summary.csv.png"
+        try :
+            grabzIt.SaveTo(path +"summary.csv.png")
+            return path +"summary.csv.png"
+        except:
+            return None
 
 
 
