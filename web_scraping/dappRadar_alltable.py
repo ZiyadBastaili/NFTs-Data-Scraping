@@ -292,6 +292,7 @@ class Scrap():
 
 
                 st.markdown('Total Transactions per Month', unsafe_allow_html=True)
+                df['Total Transactions'] = df['Total Transactions'].apply(lambda x: re.sub(',', '', x))
                 trans = alt.Chart(df).mark_line().encode(
                         x="Month",
                         y="Total Transactions:Q",
@@ -309,6 +310,7 @@ class Scrap():
                 st.altair_chart(sales, use_container_width=True)
 
                 st.markdown('Sales (ETH) per Month', unsafe_allow_html=True)
+                df['Sales (ETH)'] = df['Sales (ETH)'].apply(lambda x: re.sub(',', '', x))
                 sales = alt.Chart(df).mark_line().encode(
                     x="Month",
                     y="Sales (ETH):Q",
@@ -326,6 +328,7 @@ class Scrap():
                 st.altair_chart(Avg_usd, use_container_width=True)
 
                 st.markdown('Avg Sale (ETH) per Month', unsafe_allow_html=True)
+                df['Avg Sale (ETH)'] = df['Avg Sale (ETH)'].apply(lambda x: re.sub(',', '', x))
                 Avg_eth = alt.Chart(df).mark_line().encode(
                     x="Month",
                     y="Avg Sale (ETH):Q",
