@@ -72,24 +72,24 @@ class Scrap():
             st.title('NFTs Overview')
             st.markdown("<h3>Discover the hottest NFT collections, marketplace rankings, and top real-time sales</h3>", unsafe_allow_html=True)
 
-            self.image_scraping("https://dappradar.com/nft", 'top_15_collections', targetElement = '.sc-aKZfe', hideElement = '#om-nrz2xrzgki288pvo2jhx')
-            self.image_scraping("https://dappradar.com/nft", 'top_5_sales', targetElement = '.sc-gIRixj', hideElement = '#om-nrz2xrzgki288pvo2jhx')
-            self.image_scraping("https://dappradar.com/nft", 'top_5_marketplaces', targetElement = '.sc-kmASHI', hideElement = '#om-nrz2xrzgki288pvo2jhx')
+            a = self.image_scraping("https://dappradar.com/nft", 'top_15_collections', targetElement = '.sc-aKZfe', hideElement = '#om-nrz2xrzgki288pvo2jhx')
+            b = self.image_scraping("https://dappradar.com/nft", 'top_5_sales', targetElement = '.sc-gIRixj', hideElement = '#om-nrz2xrzgki288pvo2jhx')
+            c = self.image_scraping("https://dappradar.com/nft", 'top_5_marketplaces', targetElement = '.sc-kmASHI', hideElement = '#om-nrz2xrzgki288pvo2jhx')
 
             col1, col2, col3 = st.columns((1.5,0.2,1.1))
             with col1:
                 st.markdown("<h1> Top 15 Collections </h1>", unsafe_allow_html=True)
-                st.image("/home/ubuntu/Ziyad_Apps/nfts_data_scraping/tables_of_collections/top_15_collections.png", use_column_width=True)
+                st.image(a, use_column_width=True)
                 st.button("Show All (More than 150)", key='Collections', on_click=self.navigation, args=('Collections', ))
 
             with col3:
                 st.markdown("<h1> Top 5 Sales </h1>", unsafe_allow_html=True)
-                st.image("/home/ubuntu/Ziyad_Apps/nfts_data_scraping/tables_of_collections/top_5_sales.png", use_column_width=True)
+                st.image(b, use_column_width=True)
                 st.button("Show All", key='Sales', on_click=self.navigation, args=('Sales', ))
 
                 st.markdown("<br>", unsafe_allow_html=True)
                 st.markdown("<h1> Top 5 Marketplaces </h1>", unsafe_allow_html=True)
-                st.image("/home/ubuntu/Ziyad_Apps/nfts_data_scraping/tables_of_collections/top_5_marketplaces.png", use_column_width=True)
+                st.image(c, use_column_width=True)
                 st.button("Show All (Top 25)", key='Marketplaces', on_click=self.navigation, args=('Marketplaces', ))
 
         if st.session_state.nav == 'Collections':
@@ -384,7 +384,8 @@ class Scrap():
 
         #path = re.sub("\\\web_scraping", "", os.path.abspath("tables_of_collections"))
         path = '/home/ubuntu/Ziyad_Apps/nfts_data_scraping/tables_of_collections/'
-        grabzIt.SaveTo(path +FileName+".png")
+        grabzIt.SaveTo(path +FileName+'.png')
+        return path +FileName+'.png'
 
 
 
