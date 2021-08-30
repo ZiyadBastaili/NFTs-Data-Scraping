@@ -372,8 +372,9 @@ class Scrap():
         except:
             grabzIt.URLToImage(URLToImage)
 
-        path = re.sub("\\\web_scraping", "", os.path.abspath("tables_of_collections"))
-        grabzIt.SaveTo(path + "\\"+FileName+".png")
+        #path = re.sub("\\\web_scraping", "", os.path.abspath("tables_of_collections"))
+        path = '/home/ubuntu/Ziyad_Apps/nfts_data_scraping/tables_of_collections/'
+        grabzIt.SaveTo(path +FileName+".png")
 
 
 
@@ -544,9 +545,11 @@ class Scrap():
         options.delay=1000
         grabzIt = GrabzItClient.GrabzItClient("MWRiMTVhYTcwM2Y5NDIzODlhNmUwYzdlNmUwYzMyYjY=","Fj9ePz8/Pz8/Pwk/HT8/cS9ZP1FxYg8/Pz8aGT8fJj8=")
         grabzIt.URLToImage(link, options)
-        path = re.sub("\\\web_scraping", "", os.path.abspath("tables_of_collections"))
-        grabzIt.SaveTo(path + "\\" + filename + ".png")
-        return 'tables_of_collections/' + filename + '.png'
+        #path = re.sub("\\\web_scraping", "", os.path.abspath("tables_of_collections"))
+        #grabzIt.SaveTo(path + "\\" + filename + ".png")
+        path = '/home/ubuntu/Ziyad_Apps/nfts_data_scraping/tables_of_collections/'
+        grabzIt.SaveTo(path +filename+".png")
+        return path +filename+".png"
 
     def get_summary_seles(self, link):
         grabzIt = GrabzItClient.GrabzItClient("MWRiMTVhYTcwM2Y5NDIzODlhNmUwYzdlNmUwYzMyYjY=",
@@ -555,9 +558,11 @@ class Scrap():
         options.tableNumberToInclude = 1
         grabzIt.URLToTable(link, options)
         # Then call the Save or SaveTo method
-        path = re.sub("\\\web_scraping", "", os.path.abspath("tables_of_collections"))
-        grabzIt.SaveTo(path + "\\" + "summary.csv")
-        return path + "\\" + "summary.csv"
+        #path = re.sub("\\\web_scraping", "", os.path.abspath("tables_of_collections"))
+        #grabzIt.SaveTo(path + "\\" + "summary.csv")
+        path = '/home/ubuntu/Ziyad_Apps/nfts_data_scraping/tables_of_collections/'
+        grabzIt.SaveTo(path +"summary.csv.png")
+        return path +"summary.csv.png"
 
 
 
